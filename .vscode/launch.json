@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "orders",
+            "cwd": "${workspaceFolder}",
+            "runtimeArgs": [
+                "run-script",
+                "start"
+            ],
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npm",
+            "args": [
+                "--",
+                "--ui5"
+            ],
+            "windows": {
+                "runtimeExecutable": "npm.cmd",
+                "args": [
+                    "--",
+                    "--ui5"
+                ]
+            },
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"e:\\\\workspaces\\\\vscode\\\\orders\"}"
+            }
+        }
+    ]
+}

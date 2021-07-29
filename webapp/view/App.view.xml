@@ -1,14 +1,38 @@
 <mvc:View
-    controllerName="dig.demo.northwind.orders.orders.controller.App"
-    xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
-    xmlns="sap.m"
+	controllerName="dig.demo.northwind.orders.orders.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	height="100%"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
 >
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content />
+				<Page
+					id="page"
+					title="{i18n>title}"
+				>
+					<content>
+						<f:FlexibleColumnLayout
+							id="flexibleColumnLayout"
+							backgroundDesign="Solid"
+							stateChange="onStateChanged"
+						>
+							<!-- <f:beginColumnPages>
+								<mvc:XMLView
+									id="beginView"
+									viewName="dig.demo.northwind.orders.orders.view.Master"
+								/>
+							</f:beginColumnPages>
+							<f:midColumnPages>
+								<mvc:XMLView
+									id="detailView"
+									viewName="dig.demo.northwind.orders.orders.view.Detail"
+								/>
+							</f:midColumnPages> -->
+						</f:FlexibleColumnLayout>
+					</content>
 				</Page>
 			</pages>
 		</App>

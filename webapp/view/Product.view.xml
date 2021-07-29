@@ -1,0 +1,171 @@
+<mvc:View
+	controllerName="dig.demo.northwind.orders.orders.controller.Product"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<ObjectHeader
+		backgroundDesign="Solid"
+		icon="{ path: 'Category/Picture', formatter: '.formatter.toProductImage' }"
+		iconActive="false"
+		iconAlt=""
+		iconTooltip=""
+		intro="{ProductID}"
+		introActive="false"
+		number="{ path: 'UnitPrice', formatter: '.formatter.toCurrency' }"
+		numberUnit="USD"
+		responsive="true"
+		title="{ProductName}"
+		titleActive="false"
+	>
+		<attributes>
+			<ObjectAttribute
+				text="{Category/CategoryName}"
+				title="Category"
+			>
+				<tooltip>
+					<c:RichTooltip
+						imageAltText=""
+						imageSrc=""
+						text="{Category/Description}"
+						title="Category Description"
+						valueStateText=""
+					/>
+				</tooltip>
+			</ObjectAttribute>
+			<ObjectAttribute
+				text="{ReorderLevel}"
+				title="Reorder Lvl"
+			>
+				<tooltip>
+					<c:RichTooltip
+						imageAltText=""
+						imageSrc=""
+						text="{QuantityPerUnit}"
+						title="Quantity Per Unit"
+						valueStateText=""
+					/>
+				</tooltip>
+			</ObjectAttribute>
+		</attributes>
+		<statuses>
+			<ObjectStatus
+				icon=""
+				state="{= ${UnitsInStock} >= ${ReorderLevel} ? 'Error' : 'Success' }"
+				text="{UnitsInStock}"
+				title="Stock"
+			/>
+			<ObjectStatus
+				icon="{= ${Discontinued} ? 'sap-icon://disconnected' : 'sap-icon://connected' }"
+				state="{= ${Discontinued} ? 'Error' : 'Success' }"
+				title="Status"
+			>
+				<tooltip>
+					<c:RichTooltip
+						imageAltText=""
+						imageSrc=""
+						title="{= ${Discontinued} ? 'Discontinued' : 'Available' }"
+						valueStateText=""
+					/>
+				</tooltip>
+			</ObjectStatus>
+		</statuses>
+	</ObjectHeader>
+	<Panel
+		expandable="true"
+		expanded="true"
+		headerText="Supplier Info"
+	>
+		<form:SimpleForm
+			editable="false"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="3"
+			emptySpanXL="0"
+			emptySpanL="2"
+			columnsXL="2"
+			columnsL="1"
+		>
+			<form:content>
+				<core:Title text="Contact Info"/>
+				<Label text="Person"/>
+				<Text text=" {Supplier/ContactName}"/>
+				<Label text="Position"/>
+				<Text text="{Supplier/ContactTitle}"/>
+				<Label text="Phone"/>
+				<Text text="{Supplier/Phone}"/>
+				<Label text="Fax"/>
+				<Text text="{Supplier/Fax}"/>
+				<core:Title text="Address"/>
+				<Label text="Street"/>
+				<Text text="{Supplier/Address}"/>
+				<Label text="City"/>
+				<Text text="{Supplier/City}"/>
+				<Label text="Postal Code"/>
+				<Text text="{Supplier/PostalCode}"/>
+				<Label text="Country"/>
+				<Text text="{Supplier/Country}"/>
+			</form:content>
+		</form:SimpleForm>
+	</Panel>
+	<!-- <Table
+		footerText=""
+		items="{Supplier}"
+	>
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Suppliers"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Name"/>
+			</Column>
+			<Column>
+				<Text text="Contact"/>
+			</Column>
+			<Column>
+				<Text text="Address"/>
+			</Column>
+			<Column>
+				<Text text="Location"/>
+			</Column>
+			<Column>
+				<Text text="Phone"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						text="{HomePage}"
+						title="{CompanyName}"
+					/>
+					<ObjectIdentifier
+						text="{ContactTitle}"
+						title="{ContactName}"
+					/>
+					<ObjectIdentifier
+						text="{Address}"
+						title="{City} / {PostalCode}"
+					/>
+					<ObjectIdentifier
+						text="{Region}"
+						title="{Country}"
+					/>
+					<ObjectIdentifier
+						text="{Phone}"
+						title="{Fax}"
+					/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table> -->
+</mvc:View>

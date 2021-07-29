@@ -1,0 +1,308 @@
+<mvc:View
+	controllerName="dig.demo.northwind.orders.orders.controller.Detail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+	<ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		upperCaseAnchorBar="false"
+	>
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title
+						text="{Customer/CompanyName}"
+						wrapping="true"
+						class="sapUiSmallMarginEnd"
+					/>
+				</expandedHeading>
+				<snappedHeading>
+					<m:FlexBox
+						wrap="Wrap"
+						fitContainer="true"
+						alignItems="Center"
+					>
+						<m:FlexBox
+							fitContainer="true"
+							alignItems="Center"
+							class="sapUiTinyMarginEnd"
+						>
+							<f:Avatar
+								src="sap-icon://customer"
+								displayShape="Square"
+								class="sapUiTinyMarginEnd"
+							/>
+							<m:Title
+								text="{Customer/CompanyName}"
+								wrapping="true"
+							/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+				<actions>
+					<m:ToggleButton
+						text="Edit"
+						type="Emphasized"
+						press="onEditToggleButtonPress"
+					/>
+					<m:Button
+						text="Delete"
+						type="Transparent"
+					/>
+					<m:Button
+						text="Copy"
+						type="Transparent"
+					/>
+					<m:Button
+						icon="sap-icon://action"
+						type="Transparent"
+					/>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox
+				wrap="Wrap"
+				fitContainer="true"
+				alignItems="Center"
+			>
+				<f:Avatar
+					src="sap-icon://customer"
+					displaySize="M"
+					class="sapUiTinyMarginEnd"
+				/>
+				<m:VBox
+					justifyContent="Center"
+					class="sapUiSmallMarginEnd"
+				>
+					<m:Label text="Address"/>
+					<m:Text text="{Customer/Address}"/>
+				</m:VBox>
+				<m:VBox
+					justifyContent="Center"
+					class="sapUiSmallMarginEnd"
+				>
+					<m:Label text="City"/>
+					<m:Text text="{Customer/City}"/>
+				</m:VBox>
+				<m:VBox
+					justifyContent="Center"
+					class="sapUiSmallMarginEnd"
+				>
+					<m:Label text="Country"/>
+					<m:Text text="{Customer/Country}"/>
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="Customer Info">
+				<subSections>
+					<ObjectPageSubSection showTitle="false">
+						<blocks>
+							<m:Panel
+								expandable="true"
+								expanded="true"
+								headerText="Customer Info"
+							>
+								<form:SimpleForm
+									editable="false"
+									layout="ResponsiveGridLayout"
+									labelSpanM="4"
+									columnsL="3"
+									columnsM="2"
+								>
+									<form:content>
+										<core:Title text="Contact Info"/>
+										<m:Label text="Person"/>
+										<m:Text text=" {Customer/ContactName}"/>
+										<m:Label text="Position"/>
+										<m:Text text="{Customer/ContactTitle}"/>
+										<m:Label text="Phone"/>
+										<m:Text text="{Customer/Phone}"/>
+										<m:Label text="Fax"/>
+										<m:Text text="{Customer/Fax}"/>
+										<core:Title text="Dates"/>
+										<m:Label text="Order Date"/>
+										<m:Text text="{ path: 'OrderDate', formatter:'.formatter.toLocalDate'}"/>
+										<m:Label text="Required Date"/>
+										<m:Text text="{path: 'RequiredDate', formatter:'.formatter.toLocalDate'}"/>
+										<m:Label text="Shipped Date"/>
+										<m:Text text="{path: 'ShippedDate', formatter:'.formatter.toLocalDate'}"/>
+										<core:Title text="Shipment"/>
+										<m:Label text="Freight Cost"/>
+										<m:Text text="{ path: 'Freight', formatter: '.formatter.toCurrency'}"/>
+										<m:Label text="Shipped by"/>
+										<m:Text text="{Shipper/CompanyName}"/>
+										<m:Label text="Phone"/>
+										<m:Text text="{Shipper/Phone}"/>
+										<core:Title text="Relationship"/>
+										<m:Label text="Contact"/>
+										<m:Text text="{Employee/TitleOfCourtesy} {Employee/LastName}, {Employee/FirstName}"/>
+										<m:Label text="Position"/>
+										<m:Text text="{Employee/Title}"/>
+										<m:Label text="Phone"/>
+										<m:Text text="{Employee/HomePhone} : {Employee/Extension}"/>
+										<m:Label text="Country"/>
+										<m:Text text="{Employee/Country}"/>
+									</form:content>
+								</form:SimpleForm>
+							</m:Panel>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection
+				title="Items"
+				showTitle="false"
+			>
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Panel
+								expandable="true"
+								expanded="true"
+								headerText="Items"
+							>
+								<m:Table
+									id="tblOrderDetails"
+									items="{Order_Details}"
+									autoPopinMode="true"
+								>
+									<m:headerToolbar>
+										<m:OverflowToolbar>
+											<m:Title text="Order {OrderID}"/>
+										</m:OverflowToolbar>
+									</m:headerToolbar>
+									<m:columns>
+										<m:Column importance="High">
+											<m:Text
+												text="Product"
+												textAlign="Center"
+											/>
+										</m:Column>
+										<m:Column importance="None">
+											<m:Text
+												text="Quantity"
+												textAlign="Center"
+											/>
+										</m:Column>
+										<m:Column importance="None">
+											<m:Text
+												text="Price"
+												textAlign="Center"
+											/>
+										</m:Column>
+										<m:Column importance="High">
+											<m:Text
+												text="Total"
+												textAlign="Center"
+											/>
+										</m:Column>
+									</m:columns>
+									<m:items>
+										<m:ColumnListItem
+											type="Navigation"
+											press="onProductPress"
+										>
+											<m:cells>
+												<m:Text text="{ProductID}"/>
+												<m:Text text="{Quantity}"/>
+												<m:VBox>
+													<m:ObjectNumber
+														textAlign="Center"
+														number="{ path: 'UnitPrice', formatter: '.formatter.toCurrency'}"
+														unit="USD"
+													/>
+													<m:ObjectNumber
+														textAlign="Center"
+														number="{ path:'Discount', formatter: '.formatter.toPercentage'}"
+														state="{ path: 'Discount', formatter: '.formatter.toDiscountState' }"
+														visible="{= ${Discount} === 0 ? false : true }"
+													/>
+												</m:VBox>
+												<m:ObjectNumber
+													textAlign="Center"
+													number="{ parts: [ {path: 'Discount'}, {path:'UnitPrice'}, {path:'Quantity'} ], formatter: '.formatter.toTotalOrder' }"
+												/>
+											</m:cells>
+										</m:ColumnListItem>
+									</m:items>
+								</m:Table>
+							</m:Panel>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection
+				title="Invoices"
+				showTitle="false"
+			>
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Panel
+								expandable="true"
+								expanded="true"
+								headerText="Invoices"
+							>
+								<m:Table
+									id="invoicesTable"
+									items="{/Invoices}"
+								>
+									<m:columns>
+										<m:Column>
+											<m:Text text="Order"/>
+										</m:Column>
+										<m:Column>
+											<m:Text text="Shipped Date"/>
+										</m:Column>
+									</m:columns>
+									<m:items>
+										<m:ColumnListItem type="Inactive">
+											<m:cells>
+												<m:ObjectIdentifier
+													title="{ProductName}"
+													text="{ path: 'ExtendedPrice', formatter:'.formatter.toCurrency' }"
+												/>
+												<m:ObjectIdentifier
+													title="{ShipperName}"
+													text="{ShipCountry}"
+												/>
+											</m:cells>
+										</m:ColumnListItem>
+									</m:items>
+								</m:Table>
+							</m:Panel>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<!-- DynamicPage Footer -->
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button
+					type="Accept"
+					text="Accept"
+				/>
+				<m:Button
+					type="Reject"
+					text="Reject"
+				/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>
